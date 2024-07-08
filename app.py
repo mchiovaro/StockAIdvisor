@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 pn.extension() # this activates chat interface
 
 #%% set client
-client = anthropic.Anthropic(api_key=os.environ.get("CLAUDE_API_KEY"))
+client = anthropic.Anthropic(api_key=os.getenv("CLAUDE_API_KEY"))
 
 #%% model params
 MODEL = "claude-3-haiku-20240307"
@@ -150,7 +150,7 @@ def get_performance(question, user, interface):
     messages=[
         {
             "role": "user", 
-            "content": f"You are a stock analyst and financial advisor. You are considering the company and performance for the stock {ticker}. First, provide an overview of the company. Review how the stock is {performance_since_last_year}% in the last year, starting with {price_at_beginning_of_last} one year ago and the price on {current_day} is {price_recent}. Be sure to list these out in bullet points before evaluating them. Then, evaluate how this year, the average daily return is {avg_daily_return} per day, volatility is {volatility}, Sharpe ratio is {sharpe_ratio}, and Max Drawdown is {max_drawdown}. Be sure to list these out in bullet points before evaluating them. Round everything to one decimal place when reporting. As you review, provide guidance on if investmenting now is a good choice or if they should wait, based on risk tolerance. Explain everything simply, as if talking to someone with little knowledge about investing."}
+            "content": f"You are a stock analyst and financial advisor. You are considering the company and performance for the stock {ticker}. First, provide an overview of the company. Review how the stock is {performance_since_last_year}% in the last year, starting with {price_at_beginning_of_last} one year ago and the price on {current_day} is {price_recent}. Be sure to list these out in bullet points before evaluating them. Then, evaluate how this year, the average daily return is {avg_daily_return} per day, volatility is {volatility}, Sharpe ratio is {sharpe_ratio}, and Max Drawdown is {max_drawdown}. Be sure to list these out in bullet points before evaluating them. Round everything to one decimal place when reporting. As you review, provide information on if you think investmenting is a good choice, based on risk tolerance. Do not give advice. Let the user know that you are simply providing as assessment and not advice, and that they should consult a financial professional. Explain everything simply, as if talking to someone with little knowledge about investing."}
 
     ])
 
