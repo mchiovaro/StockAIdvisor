@@ -177,6 +177,6 @@ plot = pn.pane.Matplotlib(get_year_plot(), dpi=44, tight=True)
 layout = pn.Row(chat_interface, plot)
 
 # serve
-#layout.servable()
+layout.servable()
 #layout.show()
 # %%
